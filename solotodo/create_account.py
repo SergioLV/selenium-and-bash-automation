@@ -71,8 +71,11 @@ def createAccount(account_password):
     for c in credentials:
         credentials_file.write(c + "\n")
     credentials_file.close()
+    print("\n")
     print("########################################################")
+    print("\n")
     print("Account signup successful")
+    print("\n")
     print("########################################################")
     print("\n")
     print("E-mail: " + credentials[0])
@@ -83,7 +86,9 @@ def createAccount(account_password):
 
 print("\n")
 print("########################################################")
+print("\n")
 print("Signup automation in www.solotodo.cl")
+print("\n")
 print("########################################################")
 print("\n")
 print("The e-mail account will be generated in a fakemail website and the credentials will be stored in a new generated file called 'credentials.txt'")
