@@ -72,25 +72,23 @@ def createAccount(account_password):
         credentials_file.write(c + "\n")
     credentials_file.close()
     print("########################################################")
-    print("La cuenta ha sido creada con éxito")
+    print("Account signup successful")
     print("########################################################")
     print("\n")
-    print("Correo electrónico: " + credentials[0])
-    print("Contraseña: " + credentials[1])
+    print("E-mail: " + credentials[0])
+    print("password: " + credentials[1])
 
     time.sleep(10000)
 
 
 print("\n")
 print("########################################################")
-print("Automatización de creación de cuenta en www.solotodo.cl")
+print("Signup automation in www.solotodo.cl")
 print("########################################################")
 print("\n")
-print("El correo electrónico se obtendra con fakemail y quedará guardado en el archivo 'credenciales.txt'")
+print("The e-mail account will be generated in a fakemail website and the credentials will be stored in a new generated file called 'credentials.txt'")
 print("\n")
-
 password = input(
-    "Ingresa la clave que quieres usar (Recuerda las mayúsculas y los números): ")
+    "Enter the password you want to use for the generated account (Remember to use capital letters and numbers): ")
 print("\n")
-
 createAccount(password)
