@@ -7,7 +7,7 @@ from selenium.webdriver.common.action_chains import ActionChains
 import time
 
 
-def crearCuenta():
+def createAccount(account_password):
     driver = webdriver.Chrome()
 
     driver.set_window_size(1920, 1080)
@@ -25,17 +25,23 @@ def crearCuenta():
 
     time.sleep(3)
 
+    # Copy the mail from the mailgen
     fake_mail = driver.find_element(
         by=By.XPATH, value='//*[@id="copy-button"]').click()
 
+    # Go to the solotodo tab
     driver.switch_to.window(driver.window_handles[0])
 
-    mail = driver.find_element_by_id(
-        'inputEmail').send_keys(Keys.CONTROL + "v")
-    password = driver.find_element_by_id(
-        'inputPassword1').send_keys('QuieroPasarElRamo1')
-    repeat_password = driver.find_element_by_id(
-        'inputPassword2').send_keys('QuieroPasarElRamo1')
+    # Enter the credentials
+    mail = driver.find_element(
+        by=By.ID, value='inputEmail').send_keys(Keys.CONTROL + "v")
+    final_mail = driver.find_element(
+        by=By.ID, value='inputEmail').get_attribute('value')
+
+    password = driver.find_element(
+        by=By.ID, value='inputPassword1').send_keys(account_password)
+    repeat_password = driver.find_element(
+        by=By.ID, value='inputPassword2').send_keys(account_password)
 
     register = driver.find_element(
         by=By.XPATH, value='/html/body/div[1]/div[2]/div[2]/div/div/div[3]/div/form/input').click()
@@ -44,32 +50,47 @@ def crearCuenta():
     driver.switch_to.window(driver.window_handles[1])
     time.sleep(20)
 
+    # The mail is inside an Iframe tag and Selenium needs to make a change in order to find elements inside
     driver.switch_to.frame('emailFrame')
-    print("emailFrame")
+
     time.sleep(10)
     confirmation = driver.find_element(
         by=By.XPATH, value='/html/body/div/div[3]/table/tbody/tr/td/div/table/tbody/tr/td/table/tbody/tr/td/a')
     actions = ActionChains(driver)
 
+    # Open the url of the mail confirmation button in a new tab.
     actions.key_down(Keys.LEFT_CONTROL).click(confirmation).perform()
 
-    print("casi al original")
+    # Go to that tab
     time.sleep(3)
     driver.switch_to.window(driver.window_handles[2])
-    driver.switch_to.parent_frame()
 
-    time.sleep(3000)
-
-    # New window
-    mail_signin = driver.find_element_by_id(
-        'email').send_keys(Keys.CONTROL + "v")
-    password_signin = driver.find_element_by_id(
-        'password').send_keys('QuieroPasarElRamo1')
-    signin = driver.find_element(
-        by=By.XPATH, value='//*[@id="main-container"]/div/div/div[3]/div/form/input').click()
+    # Save the credentials in a txt file
+    credentials = [final_mail, account_password]
+    credentials_file = open("credentials.txt", "w")
+    for c in credentials:
+        credentials_file.write(c + "\n")
+    credentials_file.close()
+    print("########################################################")
+    print("La cuenta ha sido creada con éxito")
+    print("########################################################")
+    print("\n")
+    print("Correo electrónico: " + credentials[0])
+    print("Contraseña: " + credentials[1])
 
     time.sleep(10000)
 
 
-# driver.quit()
-crearCuentaSoloTodo()
+print("\n")
+print("########################################################")
+print("Automatización de creación de cuenta en www.solotodo.cl")
+print("########################################################")
+print("\n")
+print("El correo electrónico se obtendra con fakemail y quedará guardado en el archivo 'credenciales.txt'")
+print("\n")
+
+password = input(
+    "Ingresa la clave que quieres usar (Recuerda las mayúsculas y los números): ")
+print("\n")
+
+createAccount(password)
