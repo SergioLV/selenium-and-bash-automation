@@ -18,5 +18,10 @@ The second approach was to make bash scripts for the signin, signup, password re
 These are the prerequisites that you need to have installed in order of the Bash automation to work. At the moment these automation only works in UNIX-like OS.
 - [jq](https://stackoverflow.com/questions/33184780/install-jq-json-processor-on-ubuntu-10-04)
 - [htmlq](https://lindevs.com/install-htmlq-on-ubuntu/)
-
+## Considerations
+One little consideration is that if the scripts doesn't run, you should change permissions applying
+```
+chmod 777 'file.sh'
+```
+to the files.
 
