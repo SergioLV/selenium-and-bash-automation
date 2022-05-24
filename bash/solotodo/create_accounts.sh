@@ -30,6 +30,6 @@ EOF
     curl $confirmation_com
     confirmation_cl=$(curl -s $confirmation_url | htmlq --attribute href a | sed 's/com/cl/g' | sed 's/:/%3A/2g')
     curl $confirmation_cl
-    echo -e "${green}ACCOUNT CREATED.${nocolor} ${yellow}PASSWORD: " $password
+    echo -e "${green}ACCOUNT CREATED.${nocolor} ${yellow}PASSWORD: " $password ${nocolor}${nocolor}
 
 done
