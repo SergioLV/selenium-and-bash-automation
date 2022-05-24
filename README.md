@@ -9,7 +9,6 @@ These are the prerequisites that you need to have installed in order of the Sele
 - Selenium
 - Google Chrome browser
 - Chromedriver with the same version as Google Chrome
-- 
 ### Chromedriver
 [Here is](https://chromedriver.chromium.org/getting-started) the Chromedriver's getting-started page where you can download the version that suits you.
 
