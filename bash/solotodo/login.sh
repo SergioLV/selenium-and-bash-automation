@@ -6,7 +6,7 @@ yellow='\033[0;33m'
 
 input="credentials.csv"
 while IFS=, read -r mail password; do
-    curl -s -o /dev/null -H 'Content-Type: application/json' https://publicapi.solotodo.com/rest-auth/registration/ -d "$(
+    curl -s -o /dev/null -H 'Content-Type: application/json' https://publicapi.solotodo.com/rest-auth/login/ -d "$(
         cat <<EOF
     {
             "email": "$mail",
