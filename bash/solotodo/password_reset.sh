@@ -40,7 +40,7 @@ EOF
     }
 EOF
     )"
-    echo -e "${green}$mail PASSWORD CHANGED SUCCESSFULLY.${nocolor} ${yellow}NEW PASSWORD: "$new_password${nocolor}
+    echo -e "${green}$mail PASSWORD RESET SUCCESSFULLY.${nocolor} ${yellow}NEW PASSWORD: "$new_password${nocolor}
 
     echo $mail,$new_password >>new_credentials.csv
 done <$input
