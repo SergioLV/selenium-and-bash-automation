@@ -1,10 +1,11 @@
 #!/bin/bash
+
 green='\033[0;32m'
 nocolor='\033[0m'
 yellow='\033[0;33m'
 
 for i in $(seq 1 $1); do
-    password=$(date | base64)
+    password=$(tr </dev/urandom -dc _A-Z-a-z-0-9 | head -c${30:-32})
     mail=$(curl -s "https://www.1secmail.com/api/v1/?action=genRandomMailbox&count=1" | sed 's/"//g' | sed 's/[][]//g')
 
     curl -s -o /dev/null -H 'Content-Type: application/json' https://publicapi.solotodo.com/rest-auth/registration/ -d "$(
@@ -30,6 +31,7 @@ EOF
     curl $confirmation_com
     confirmation_cl=$(curl -s $confirmation_url | htmlq --attribute href a | sed 's/com/cl/g' | sed 's/:/%3A/2g')
     curl $confirmation_cl
-    echo -e "${green}ACCOUNT CREATED.${nocolor} ${yellow}PASSWORD: " $password ${nocolor}${nocolor}
+    echo -e "${green}ACCOUNT CREATED.${nocolor} ${yellow}PASSWORD:" $password ${nocolor}
+    echo $mail,$password >>credentials.txt
 
 done
