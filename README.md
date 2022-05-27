@@ -1,5 +1,5 @@
 # About the project
-This is a Laboratory of the Cryptography course at Universidad Diego portales that has the objective of learn about the security in different websites in different locations of the work. Here I audited the Chilean website [Solotodo](https://www.solotodo.cl/) and the Spanish website [Pccomponentes](https://www.pccomponentes.com/).
+This is a Laboratory of the Cryptography course at Universidad Diego portales that has the objective of learn about the security in different websites in different locations of the work. Here I audited the Chilean website [Solotodo](https://www.solotodo.cl/) and the Spanish website [Mundo Deportivo]([https://www.pccomponentes.com/](https://www.mundodeportivo.com/)).
 
 # Selenium Automation
 At first I tried to use Selenium for the signin and signup automation but I realized it is way too slow for those tasks.  
@@ -18,7 +18,6 @@ The second approach was to make bash scripts for the signin, signup, password re
 These are the prerequisites that you need to have installed in order of the Bash automation to work. At the moment these automation only works in UNIX-like OS.
 - [jq](https://stackoverflow.com/questions/33184780/install-jq-json-processor-on-ubuntu-10-04)
 - [htmlq](https://lindevs.com/install-htmlq-on-ubuntu/)
-- [xmllint](https://www.baeldung.com/linux/xmllint)
 ## Considerations
 One little consideration is that if the scripts doesn't run, you should change permissions applying
 ```
