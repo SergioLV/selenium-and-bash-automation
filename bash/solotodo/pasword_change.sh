@@ -6,6 +6,7 @@ nocolor='\033[0m'
 yellow='\033[0;33m'
 
 input="credentials.csv"
+ACCOUNT_COUNTER=1
 while IFS=, read -r mail password; do
     new_password=$(tr </dev/urandom -dc _A-Z-a-z-0-9 | head -c${30:-32})
     login_token=$(
@@ -29,7 +30,8 @@ EOF
 EOF
     )"
 
-    echo -e "${green}$mail PASSWORD CHANGE SUCCESSFUL.${nocolor} ${yellow}NEW PASSWORD: "${new_password}${nocolor}
+    echo -e "${green}($ACCOUNT_COUNTER) $mail PASSWORD CHANGE SUCCESSFUL.${nocolor} ${yellow}NEW PASSWORD: "${new_password}${nocolor}
     echo $mail,$new_password >>password_change_credentials.csv
+    ACCOUNT_COUNTER=$((ACCOUNT_COUNTER + 1))
 done <$input
 
