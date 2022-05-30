@@ -21,7 +21,7 @@ These are the prerequisites that you need to have installed in order of the Bash
 ## Considerations
 One little consideration is that if the scripts doesn't run, you should change permissions applying
 ```
-chmod 777 'file.sh'
+chmod 755 'file.sh'
 ```
 to the files.
 
