@@ -3,19 +3,24 @@
 green='\033[0;32m'
 nocolor='\033[0m'
 yellow='\033[0;33m'
+red='\033[0;31m'
 
 input="credentials.csv"
 ACCOUNT_COUNTER=1
 while IFS=, read -r mail password; do
-    curl -s -o /dev/null -H 'Content-Type: application/json' https://publicapi.solotodo.com/rest-auth/login/ -d "$(
+    response=$(curl -s -H 'Content-Type: application/json' https://publicapi.solotodo.com/rest-auth/login/ -d "$(
         cat <<EOF
     {
             "email": "$mail",
             "password": "$password"
     }
 EOF
-    )"
-    echo -e "${green}($ACCOUNT_COUNTER) ACCOUNT LOGIN SUCCESSFUL.${nocolor} ${yellow}MAIL: "${mail}${nocolor}
+    )" | jq '.key')
+    if [[ $response == null ]]; then
+        echo -e "${red} BAD CREDENTIALS FOR THE ACCOUNT: $mail, TRY ANOTHER PASSWORD ${nocolor}"
+    else
+        echo -e "${green}($ACCOUNT_COUNTER) ACCOUNT LOGIN SUCCESSFUL.${nocolor} ${yellow}MAIL: "${mail}${nocolor}
+    fi
     ACCOUNT_COUNTER=$((ACCOUNT_COUNTER + 1))
-    
+
 done <$input
